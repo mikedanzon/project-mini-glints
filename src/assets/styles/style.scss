@@ -1,0 +1,16 @@
+@import './variables';
+@import './header';
+@import './home';
+@import './footer';
+
+* {
+  margin: 0;
+}
+
+/* Carousel.jsx */
+.caraousel-mini {
+  height: 35vh;
+  width: 100%;
+  object-fit: cover;
+}
+/* End of Carousel.jsx */

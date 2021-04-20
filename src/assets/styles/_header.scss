@@ -1,0 +1,92 @@
+.header-normal {
+  display: flex;
+  width: 100%;
+  text-align: center;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  background-color: $background-color-primary;
+  color: white;
+  img {
+    width: 130px;
+    height: auto;
+  }
+  .header-normal-logo {
+    margin-top: 2px;
+    width: 33em;
+    flex-grow: 1;
+  }
+  @media (max-width: 600px) {
+    .header-normal-search {
+      display: none !important;
+    }
+  }
+  .header-normal-search {
+    align-self: center;
+    width: 33em;
+    flex-grow: 1;
+    input {
+      width: 80%;
+    }
+    .header-search {
+      border: 2px solid #ff2f2f;
+      border-radius: 15px;
+      outline: none;
+    }
+    .header-search:focus {
+      color: #ff2f2f;
+    }
+    input {
+      text-align: center;
+    }
+  }
+  .header-normal-login {
+    align-self: center;
+    width: 33em;
+    flex-grow: 1;
+    .header-normal-login-sign-in {
+      font-size: 20px;
+    }
+  }
+}
+
+// modal dialog diambil dari modal react strap
+.modal-dialog {
+  @media (max-width: 600px) {
+    margin: 3rem;
+  }
+  margin-top: 120px;
+}
+
+.modal-login {
+  padding: 30px;
+  text-align: center;
+  background-color: $background-color-primary;
+  color: white;
+  img {
+    width: 200px;
+    height: auto;
+    padding-bottom: 20px;
+  }
+  .modal-login-register {
+    button {
+      padding: 0.175rem 0.375rem;
+    }
+  }
+}
+
+.modal-register {
+  padding: 30px;
+  text-align: center;
+  background-color: $background-color-primary;
+  color: white;
+  img {
+    width: 200px;
+    height: auto;
+    padding-bottom: 20px;
+  }
+  .modal-register-login {
+    button {
+      padding: 0.175rem 0.375rem;
+    }
+  }
+}
