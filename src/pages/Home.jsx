@@ -17,16 +17,40 @@ const useStyles = makeStyles((theme) => ({
 function Home(props) {
   const classes = useStyles();
   const [dataMovie, setDataMovie] = useState([]);
+  const [dataPage, setDataPage] = useState(0);
+  const [page, setPage] = useState(1);
 
   useEffect(() => {
-    fetchdata();
+    fetchData();
+    fetchPage();
   }, []);
 
-  const fetchdata = async () => {
+  const fetchData = async () => {
     try {
       var res = await Axios.get('https://septian.dev/movie-api/movies');
       setDataMovie(res.data.data);
       console.log(res.data.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const fetchPage = async () => {
+    try {
+      var res = await Axios.get('https://septian.dev/movie-api/movies');
+      setDataPage(Math.ceil(res.data.totalItems / 15));
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const pageChange = async (event, value) => {
+    setPage(value);
+    try {
+      let res = await Axios.get(
+        `https://septian.dev/movie-api/movies?page=${value}`
+      );
+      setDataMovie(res.data.data);
     } catch (error) {
       console.log(error);
     }
@@ -67,7 +91,7 @@ function Home(props) {
         <div className="main-content-category">Browse by category</div>
         <div className="main-content-genre">
           <div className="main-content-genre-all mr-4" tabIndex="1">
-            <button className="btn" onClick={fetchdata}>
+            <button className="btn" onClick={fetchData}>
               All
             </button>
           </div>
@@ -100,7 +124,13 @@ function Home(props) {
       </div>
       <div className="render-movie">{renderMovie()}</div>
       <div className="main-pagination">
-        <Pagination count={10} variant="outlined" color="secondary" />
+        <Pagination
+          count={dataPage}
+          page={page}
+          onChange={pageChange}
+          variant="outlined"
+          color="secondary"
+        />
       </div>
       <Footer />
     </>
