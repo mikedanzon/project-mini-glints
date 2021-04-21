@@ -32,10 +32,10 @@ function Home(props) {
     }
   };
 
-  const renderAction = async () => {
+  const renderGenre = async (gen) => {
     try {
-      var res = await Axios.get(
-        'https://septian.dev/movie-api/movies?category=1'
+      let res = await Axios.get(
+        `https://septian.dev/movie-api/movies?category=${gen}`
       );
       setDataMovie(res.data.data);
     } catch (error) {
@@ -49,7 +49,7 @@ function Home(props) {
         <div className={`render-movie-list`} key={index}>
           <img
             src={`https://septian.dev/movie-api/${val.posterUrl}`}
-            alt="image"
+            alt="poster"
             className="pr-3"
           />
           <div className="font-weight-bold">{val.title}</div>
@@ -72,21 +72,29 @@ function Home(props) {
             </button>
           </div>
           <div className="main-content-genre-superpower mr-4" tabIndex="2">
-            <button className="btn">Super Power</button>
+            <button className="btn" onClick={() => renderGenre(1)}>
+              Super Power
+            </button>
           </div>
           <div className="main-content-genre-horror mr-4" tabIndex="3">
-            <button className="btn">Horror</button>
+            <button className="btn" onClick={() => renderGenre(2)}>
+              Horror
+            </button>
           </div>
           <div className="main-content-genre-action mr-4" tabIndex="4">
-            <button className="btn" onClick={renderAction}>
+            <button className="btn" onClick={() => renderGenre(3)}>
               Action
             </button>
           </div>
           <div className="main-content-genre-fantasy mr-4" tabIndex="5">
-            <button className="btn">Fantasy</button>
+            <button className="btn" onClick={() => renderGenre(4)}>
+              Fantasy
+            </button>
           </div>
           <div className="main-content-genre-harem" tabIndex="6">
-            <button className="btn">Harem</button>
+            <button className="btn" onClick={() => renderGenre(5)}>
+              Harem
+            </button>
           </div>
         </div>
       </div>
