@@ -1,0 +1,57 @@
+.overview-trailer {
+  position: relative;
+  color: white;
+  .overview-trailer-text {
+    position: absolute;
+    top: 10%;
+    left: 6%;
+    right: 6%;
+    bottom: 7%;
+    padding-left: 1%;
+    padding-right: 1%;
+    overflow: hidden;
+    .overview-trailer-text-desc {
+      width: 60%;
+    }
+  }
+  img {
+    object-fit: cover;
+    height: 35vh;
+    width: 100%;
+  }
+}
+.overview-buttons {
+  display: flex;
+  padding-top: 10px;
+  padding-bottom: 20px;
+  padding-left: 7%;
+  :focus {
+    background-color: $color-main-red;
+    color: white;
+  }
+}
+
+.main-overview {
+  padding-left: 7%;
+  padding-right: 7%;
+  .main-overview-text {
+    font-weight: bold;
+    font-size: 30px;
+  }
+  .main-overview-border {
+    border: 1px solid #cdcdcd;
+    transform: rotate(-0.3deg);
+  }
+}
+
+.main-characters {
+  padding-left: 7%;
+  padding-right: 7%;
+  padding-bottom: 200px;
+}
+
+.main-review {
+  padding-left: 7%;
+  padding-right: 7%;
+  padding-bottom: 200px;
+}

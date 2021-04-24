@@ -12,7 +12,9 @@ function Footer() {
       <div className="footer-mini-top">
         <div className="footer-mini-top-1">
           <div className="footer-mini-top-1-1">
-            <img src={Logo} alt="Logo" />
+            <a href="/">
+              <img src={Logo} alt="Logo" />
+            </a>
           </div>
           <div className="footer-mini-top-1-2">
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Excepturi
@@ -30,16 +32,26 @@ function Footer() {
           <div className="footer-mini-top-3-1">
             <div className="footer-mini-top-3-1-download">Download</div>
             <div className="footer-mini-top-3-1-image">
-              <img src={Gplay} alt="gplay" />
-              <img src={Apple} alt="apple" />
+              <a href="https://play.google.com" target="blank">
+                <img src={Gplay} alt="gplay" />
+              </a>
+              <a href="https://apple.com" target="blank">
+                <img src={Apple} alt="apple" />
+              </a>
             </div>
           </div>
           <div className="footer-mini-top-3-2">
             <div className="footer-mini-top-3-2-social">Social Media</div>
             <div className="footer-mini-top-3-2-image">
-              <img className="mr-3" src={Fb} alt="social" />
-              <img className="mr-3" src={Ig} alt="social" />
-              <img src={Pinterest} alt="social" />
+              <a href="https://facebook.com" target="blank">
+                <img className="mr-3" src={Fb} alt="social" />
+              </a>
+              <a href="https://instagram.com" target="blank">
+                <img className="mr-3" src={Ig} alt="social" />
+              </a>
+              <a href="https://pinterest.com" target="blank">
+                <img src={Pinterest} alt="social" />
+              </a>
             </div>
           </div>
         </div>

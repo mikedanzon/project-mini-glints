@@ -5,6 +5,7 @@ import Header from '../components/Header';
 import Axios from 'axios';
 import { makeStyles } from '@material-ui/core/styles';
 import Pagination from '@material-ui/lab/Pagination';
+import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -71,11 +72,13 @@ function Home(props) {
     return dataMovie.map((val, index) => {
       return (
         <div className={`render-movie-list`} key={index}>
-          <img
-            src={`https://septian.dev/movie-api/${val.posterUrl}`}
-            alt="poster"
-            className="pr-3"
-          />
+          <Link to={`/movie/${val.id}`}>
+            <img
+              src={`https://septian.dev/movie-api/${val.posterUrl}`}
+              alt="poster"
+              className="pr-3"
+            />
+          </Link>
           <div className="font-weight-bold">{val.title}</div>
           <div>{val.category[0]}</div>
         </div>

@@ -24,7 +24,9 @@ function Header() {
     <>
       <div className="header-normal">
         <div className="header-normal-logo">
-          <img className="ml-5 mr-2" src={Logo} alt="logo" />
+          <a href="/">
+            <img className="ml-5 mr-2" src={Logo} alt="logo" />
+          </a>
         </div>
         <div className="header-normal-search">
           <input
