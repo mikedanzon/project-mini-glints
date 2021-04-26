@@ -6,6 +6,7 @@ import Axios from 'axios';
 import { makeStyles } from '@material-ui/core/styles';
 import Pagination from '@material-ui/lab/Pagination';
 import { Link } from 'react-router-dom';
+import { URL_MOVIEAPI } from '../helper/url';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -28,7 +29,7 @@ function Home(props) {
 
   const fetchData = async () => {
     try {
-      var res = await Axios.get('https://septian.dev/movie-api/movies');
+      var res = await Axios.get(`${URL_MOVIEAPI}/movies`);
       setDataMovie(res.data.data);
       console.log(res.data.data);
     } catch (error) {
@@ -38,7 +39,7 @@ function Home(props) {
 
   const fetchPage = async () => {
     try {
-      var res = await Axios.get('https://septian.dev/movie-api/movies');
+      var res = await Axios.get(`${URL_MOVIEAPI}/movies`);
       setDataPage(Math.ceil(res.data.totalItems / 15));
     } catch (error) {
       console.log(error);
@@ -49,7 +50,7 @@ function Home(props) {
     setPage(value);
     try {
       let res = await Axios.get(
-        `https://septian.dev/movie-api/movies?page=${value}`
+        `${URL_MOVIEAPI}/movies?page=${value}`
       );
       setDataMovie(res.data.data);
     } catch (error) {
@@ -60,7 +61,7 @@ function Home(props) {
   const renderGenre = async (gen) => {
     try {
       let res = await Axios.get(
-        `https://septian.dev/movie-api/movies?category=${gen}`
+        `${URL_MOVIEAPI}/movies?genre=${gen}`
       );
       setDataMovie(res.data.data);
     } catch (error) {
@@ -74,13 +75,13 @@ function Home(props) {
         <div className={`render-movie-list`} key={index}>
           <Link to={`/movie/${val.id}`}>
             <img
-              src={`https://septian.dev/movie-api/${val.posterUrl}`}
+              src={`${URL_MOVIEAPI}/${val.posterUrl}`}
               alt="poster"
               className="pr-3"
             />
           </Link>
           <div className="font-weight-bold">{val.title}</div>
-          <div>{val.category[0]}</div>
+          <div>{val.genre[0]}</div>
         </div>
       );
     });
@@ -100,17 +101,17 @@ function Home(props) {
           </div>
           <div className="main-content-genre-superpower mr-4" tabIndex="2">
             <button className="btn" onClick={() => renderGenre(1)}>
-              Super Power
+              Action
             </button>
           </div>
           <div className="main-content-genre-horror mr-4" tabIndex="3">
             <button className="btn" onClick={() => renderGenre(2)}>
-              Horror
+              Super Hero
             </button>
           </div>
           <div className="main-content-genre-action mr-4" tabIndex="4">
             <button className="btn" onClick={() => renderGenre(3)}>
-              Action
+              Adventure
             </button>
           </div>
           <div className="main-content-genre-fantasy mr-4" tabIndex="5">

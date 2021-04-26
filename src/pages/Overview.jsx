@@ -4,6 +4,7 @@ import Axios from 'axios';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import OverviewIMG from '../assets/img/overview-img.jpg';
+import { URL_MOVIEAPI } from '../helper/url';
 
 function Overview() {
   const { id } = useParams();
@@ -16,7 +17,7 @@ function Overview() {
 
   const fetchId = async () => {
     try {
-      var res = await Axios.get(`https://septian.dev/movie-api/movies/${id}`);
+      var res = await Axios.get(`${URL_MOVIEAPI}/movies/${id}`);
       setDataMovie(res.data.data);
       console.log(res.data.data);
     } catch (error) {
@@ -100,8 +101,7 @@ function Overview() {
             {dataMovie.featuredSong} <br />
             <span className="font-weight-bold">Budget</span> :{' '}
             {dataMovie.budget} <br />
-            <span className="font-weight-bold">Genre</span> :{' '}
-            {dataMovie.category}
+            <span className="font-weight-bold">Genre</span> : {dataMovie.genre}
           </div>
         </div>
       )}

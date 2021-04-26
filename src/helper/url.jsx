@@ -1,1 +1,1 @@
-export const URL_LOCALHOST = '';
+export const URL_MOVIEAPI = 'https://septian.dev/movie-api';
