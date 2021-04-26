@@ -1,13 +1,23 @@
 import React, { useRef, useState } from 'react';
-import { Modal } from 'reactstrap';
+import {
+  ButtonDropdown,
+  DropdownItem,
+  DropdownMenu,
+  DropdownToggle,
+  Modal,
+} from 'reactstrap';
 import Logo from '../assets/img/logo.png';
 import axios from 'axios';
 import { URL_MOVIEAPI } from '../helper/url';
 import { toast, ToastContainer } from 'react-toastify';
+import { useDispatch, useSelector } from 'react-redux';
+import Swal from 'sweetalert2';
+import { Link } from 'react-router-dom';
 
 function Header() {
-  const [modal, setModal] = useState(false);
-  const [modal2, setModal2] = useState(false);
+  const [modal, setModal] = useState(false); // modal Login
+  const [modal2, setModal2] = useState(false); // modal Register
+  const [dropdownOpen, setOpen] = useState(false); // user button
   const userLogin = useRef();
   const passLogin = useRef();
   const userRegis = useRef();
@@ -15,6 +25,8 @@ function Header() {
   const nameRegis = useRef();
   const passRegis = useRef();
   const confPassRegis = useRef();
+  const auth = useSelector((state) => state.auth); // initialState in authReducers
+  const dispatch = useDispatch();
 
   const handleLogin = () => {
     axios
@@ -23,8 +35,15 @@ function Header() {
         password: passLogin.current.value,
       })
       .then((res) => {
-        console.log(res.data.token);
+        dispatch({
+          type: 'LOGIN',
+          payload: {
+            id: res.data.id,
+            token: res.data.token,
+          },
+        });
         localStorage.setItem('token', res.data.token);
+        localStorage.setItem('id', res.data.id);
         toast.success('You are now logged in!', {
           position: 'bottom-right',
           autoClose: 3000,
@@ -35,6 +54,19 @@ function Header() {
           progress: undefined,
         });
         toggle();
+        axios.get(`${URL_MOVIEAPI}/users/${res.data.id}`).then((res) => {
+          dispatch({
+            type: 'USER_DATA',
+            payload: {
+              userName: res.data.data.userName,
+              name: res.data.data.name,
+              image: res.data.data.imageUrl,
+            },
+          });
+          localStorage.setItem('userName', res.data.data.userName);
+          localStorage.setItem('name', res.data.data.name);
+          localStorage.setItem('image', res.data.data.imageUrl);
+        });
       })
       .catch((err) => {
         toast.error(err.response.data.message, {
@@ -47,6 +79,34 @@ function Header() {
           progress: undefined,
         });
       });
+  };
+
+  const handleLogout = () => {
+    Swal.fire({
+      title: 'Are you sure?',
+      text: 'You are about to logout!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, log me out!',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire('Logout!', 'You have been logged out.', 'success');
+        localStorage.removeItem('token');
+        localStorage.removeItem('id');
+        localStorage.removeItem('name');
+        localStorage.removeItem('userName');
+        localStorage.removeItem('image');
+        dispatch({
+          type: 'LOGOUT',
+          payload: {
+            id: '',
+            token: '',
+          },
+        });
+      }
+    });
   };
 
   const handleRegister = () => {
@@ -88,6 +148,8 @@ function Header() {
 
   const toggle2 = () => setModal2(!modal2);
 
+  const toggleBtn = () => setOpen(!dropdownOpen);
+
   const toggleRegister = () => {
     setModal(false);
     return setModal2(true);
@@ -124,13 +186,36 @@ function Header() {
             placeholder="Search Movies"
           />
         </div>
-        <div className="header-normal-login">
-          <div className="header-normal-login-sign-in">
-            <button onClick={toggle} className="btn btn-danger">
-              User Login
-            </button>
+        {auth.isLogin ? (
+          <div className="header-normal-user">
+            <div className="header-normal-user-button">
+              <ButtonDropdown isOpen={dropdownOpen} toggle={toggleBtn}>
+                <DropdownToggle caret color="danger">
+                  {auth.name}
+                </DropdownToggle>
+                <DropdownMenu>
+                  <DropdownItem header>User Menu</DropdownItem>
+                  <Link to={`/profile/${auth.id}`}>
+                    <DropdownItem>Profile Settings</DropdownItem>
+                  </Link>
+                  <DropdownItem divider />
+                  <DropdownItem onClick={handleLogout}>Sign out</DropdownItem>
+                </DropdownMenu>
+              </ButtonDropdown>
+              {/* <button onClick={handleLogout} className="btn btn-danger">
+                {auth.name}
+              </button> */}
+            </div>
           </div>
-        </div>
+        ) : (
+          <div className="header-normal-login">
+            <div className="header-normal-login-sign-in">
+              <button onClick={toggle} className="btn btn-danger">
+                User Login
+              </button>
+            </div>
+          </div>
+        )}
       </div>
       {/* Modal Login */}
       <Modal isOpen={modal} toggle={toggle}>
@@ -149,9 +234,6 @@ function Header() {
               <button className="btn btn-danger mb-3" onClick={handleLogin}>
                 Login
               </button>
-            </div>
-            <div className="pb-3">
-              <a href="/">Forgot your password ?</a>
             </div>
             <div className="modal-login-register">
               Don't have an account yet?

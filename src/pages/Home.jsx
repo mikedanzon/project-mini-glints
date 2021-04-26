@@ -31,7 +31,6 @@ function Home(props) {
     try {
       var res = await Axios.get(`${URL_MOVIEAPI}/movies`);
       setDataMovie(res.data.data);
-      console.log(res.data.data);
     } catch (error) {
       console.log(error);
     }
@@ -49,9 +48,7 @@ function Home(props) {
   const pageChange = async (event, value) => {
     setPage(value);
     try {
-      let res = await Axios.get(
-        `${URL_MOVIEAPI}/movies?page=${value}`
-      );
+      let res = await Axios.get(`${URL_MOVIEAPI}/movies?page=${value}`);
       setDataMovie(res.data.data);
     } catch (error) {
       console.log(error);
@@ -60,9 +57,7 @@ function Home(props) {
 
   const renderGenre = async (gen) => {
     try {
-      let res = await Axios.get(
-        `${URL_MOVIEAPI}/movies?genre=${gen}`
-      );
+      let res = await Axios.get(`${URL_MOVIEAPI}/movies?genre=${gen}`);
       setDataMovie(res.data.data);
     } catch (error) {
       console.log(error);
@@ -81,7 +76,7 @@ function Home(props) {
             />
           </Link>
           <div className="font-weight-bold">{val.title}</div>
-          <div>{val.genre[0]}</div>
+          <div>{val.genre.join()}</div>
         </div>
       );
     });
@@ -94,27 +89,27 @@ function Home(props) {
       <div className={`main-content ${classes.root}`}>
         <div className="main-content-category">Browse by category</div>
         <div className="main-content-genre">
-          <div className="main-content-genre-all mr-4" tabIndex="1">
+          <div className="main-content-genre-all" tabIndex="1">
             <button className="btn" onClick={fetchData}>
               All
             </button>
           </div>
-          <div className="main-content-genre-superpower mr-4" tabIndex="2">
+          <div className="main-content-genre-action" tabIndex="2">
             <button className="btn" onClick={() => renderGenre(1)}>
               Action
             </button>
           </div>
-          <div className="main-content-genre-horror mr-4" tabIndex="3">
+          <div className="main-content-genre-superhero" tabIndex="3">
             <button className="btn" onClick={() => renderGenre(2)}>
               Super Hero
             </button>
           </div>
-          <div className="main-content-genre-action mr-4" tabIndex="4">
+          <div className="main-content-genre-adventure" tabIndex="4">
             <button className="btn" onClick={() => renderGenre(3)}>
               Adventure
             </button>
           </div>
-          <div className="main-content-genre-fantasy mr-4" tabIndex="5">
+          <div className="main-content-genre-fantasy" tabIndex="5">
             <button className="btn" onClick={() => renderGenre(4)}>
               Fantasy
             </button>

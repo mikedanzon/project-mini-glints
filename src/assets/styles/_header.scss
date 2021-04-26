@@ -39,6 +39,14 @@
       text-align: center;
     }
   }
+  .header-normal-user {
+    align-self: center;
+    width: 33em;
+    flex-grow: 1;
+    .header-normal-user-button {
+      font-size: 20px;
+    }
+  }
   .header-normal-login {
     align-self: center;
     width: 33em;
@@ -88,5 +96,12 @@
     button {
       padding: 0.175rem 0.375rem;
     }
+  }
+}
+
+.account-image {
+  img {
+    width: 40px;
+    height: 30px;
   }
 }

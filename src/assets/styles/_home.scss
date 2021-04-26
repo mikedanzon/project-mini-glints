@@ -12,6 +12,18 @@
     height: 250px;
     width: 100%;
   }
+  @media (max-width: 600px) {
+    padding-right: 0px;
+    padding-left: 10px;
+    .render-movie-list {
+      flex-basis: 33%;
+      padding-bottom: 10px;
+    }
+    img {
+      height: 150px;
+      width: 100%;
+    }
+  }
 }
 
 .main-content {
@@ -26,13 +38,51 @@
     font-weight: bold;
     height: 100%;
     width: 100%;
-    .main-content-genre-horror {
-      padding-right: 1em;
-      padding-left: 1em;
+    .main-content-genre-all {
+      margin-right: 25px;
+    }
+    .main-content-genre-action {
+      margin-right: 25px;
+    }
+    .main-content-genre-superhero {
+      margin-right: 25px;
+    }
+    .main-content-genre-adventure {
+      margin-right: 25px;
+    }
+    .main-content-genre-fantasy {
+      margin-right: 25px;
+    }
+    .main-content-genre-harem {
+      display: none;
+      margin-right: 25px;
     }
     :focus {
       background-color: $color-main-red;
       color: white;
+    }
+  }
+  @media (max-width: 600px) {
+    padding: 15px 30px 25px 30px;
+    .main-content-genre {
+      .main-content-genre-all {
+        margin-right: 10px;
+      }
+      .main-content-genre-action {
+        margin-right: 10px;
+      }
+      .main-content-genre-superhero {
+        margin-right: 10px;
+      }
+      .main-content-genre-adventure {
+        margin-right: 10px;
+      }
+      .main-content-genre-fantasy {
+        display: none;
+      }
+      .main-content-genre-harem {
+        display: none;
+      }
     }
   }
 }

@@ -12,14 +12,13 @@ function Overview() {
   const [page, setPage] = useState(0);
 
   useEffect(() => {
-    fetchId();
+    fetchId(); // eslint-disable-next-line
   }, []);
 
   const fetchId = async () => {
     try {
       var res = await Axios.get(`${URL_MOVIEAPI}/movies/${id}`);
       setDataMovie(res.data.data);
-      console.log(res.data.data);
     } catch (error) {
       console.log(error);
     }

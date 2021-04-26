@@ -3,9 +3,12 @@
 @import './home';
 @import './footer';
 @import './overview';
+@import './profile';
+@import './notfound';
 
 * {
   margin: 0;
+  padding: 0;
 }
 
 /* Carousel.jsx */

@@ -1,0 +1,79 @@
+.profile-background {
+  background: url('https://i.pinimg.com/originals/5f/a9/c2/5fa9c2b194d0b2751f0b3046c90b4ed4.jpg')
+    no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  min-height: 100vh;
+  @media (max-width: 600px) {
+    .profile-main {
+      color: white;
+      padding-left: 7%;
+      padding-right: 7%;
+      padding-top: 5%;
+      width: 100%;
+      .profile-main-left {
+        text-align: center;
+        img {
+          width: 150px;
+        }
+        padding-bottom: 30px;
+      }
+      .profile-main-right {
+        input {
+          border-radius: 7px;
+          padding-left: 5px;
+          padding-right: 5px;
+        }
+        ::placeholder {
+          text-align: center;
+        }
+        .profile-main-right-menu {
+          color: rgb(55, 120, 251);
+          :hover {
+            cursor: pointer;
+          }
+          .profile-main-right-profile {
+            color: white;
+          }
+        }
+      }
+    }
+  }
+  @media (min-width: 600px) {
+    .profile-main {
+      color: white;
+      margin-left: 7%;
+      margin-right: 7%;
+      margin-top: 5%;
+      display: flex;
+      .profile-main-left {
+        width: 30%;
+        img {
+          width: 150px;
+        }
+      }
+      .profile-main-right {
+        width: 70%;
+        input {
+          border-radius: 7px;
+          padding-left: 5px;
+          padding-right: 5px;
+        }
+        ::placeholder {
+          text-align: center;
+        }
+        .profile-main-right-menu {
+          color: rgb(55, 120, 251);
+          :hover {
+            cursor: pointer;
+          }
+          .profile-main-right-profile {
+            color: white;
+          }
+        }
+      }
+    }
+  }
+}

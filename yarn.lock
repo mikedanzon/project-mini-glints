@@ -9879,6 +9879,11 @@ redent@^3.0.0:
     indent-string "^4.0.0"
     strip-indent "^3.0.0"
 
+redux-devtools-extension@^2.13.9:
+  version "2.13.9"
+  resolved "https://registry.yarnpkg.com/redux-devtools-extension/-/redux-devtools-extension-2.13.9.tgz#6b764e8028b507adcb75a1cae790f71e6be08ae7"
+  integrity sha512-cNJ8Q/EtjhQaZ71c8I9+BPySIBVEKssbPpskBfsXqb8HJ002A3KRVHfeRzwRo6mGPqsm7XuHTqNSNeS1Khig0A==
+
 redux@^4.0.0, redux@^4.0.5:
   version "4.0.5"
   resolved "https://registry.yarnpkg.com/redux/-/redux-4.0.5.tgz#4db5de5816e17891de8a80c424232d06f051d93f"
@@ -11123,6 +11128,11 @@ svgo@^1.0.0, svgo@^1.2.2:
     stable "^0.1.8"
     unquote "~1.1.1"
     util.promisify "~1.0.0"
+
+sweetalert2@^10.16.6:
+  version "10.16.6"
+  resolved "https://registry.yarnpkg.com/sweetalert2/-/sweetalert2-10.16.6.tgz#bf9893386aa9330a22fde188c25897a98559dc4a"
+  integrity sha512-089SRfG8NopJAVG9euo+kKHWRaCK6V5WY6v1kySYL07SDF/FEEW1Fu+LqkHqvQ0h3KnQ8AE2Z81mpvhMOlx/Vw==
 
 symbol-observable@1.2.0, symbol-observable@^1.2.0:
   version "1.2.0"
