@@ -132,7 +132,7 @@ function Header() {
         toggleLogin();
       })
       .catch((err) => {
-        toast.error(err.response.data.message, {
+        toast.error(err.response.data.data[0].msg, {
           position: 'bottom-right',
           autoClose: 5000,
           hideProgressBar: false,
